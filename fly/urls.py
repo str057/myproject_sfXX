@@ -1,6 +1,10 @@
 from django.urls import path
-from . import views  # Импорт views из текущей папки
+from . import views
+
+app_name = "fly"
 
 urlpatterns = [
-    path('', views.index, name='index'),  # Если у тебя есть функция index в views.py
+    path("", views.index, name="index"),
+    path("<int:pk>/", views.prod_detail, name="prod_detail"),
+
 ]

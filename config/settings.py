@@ -1,8 +1,8 @@
 import os.path
 from pathlib import Path
-from dotenv import load_dotenv
 
-
+from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT
+from django.template.context_processors import media
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,7 +40,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "fly/templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -54,17 +54,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-load_dotenv()
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'postgres'),  # Значение по умолчанию
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "scree_ru",
+        "USER": "postgres",
+        "PASSWORD": "8993106",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -90,14 +92,16 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+STATIC_URL = "/static/"  # Уже есть
+STATIC_ROOT = os.path.join(
+    BASE_DIR, "static"
+)  # Для сбора статики командой `collectstatic`
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "staticfiles"),  # Дополнительные папки со статикой
+]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
