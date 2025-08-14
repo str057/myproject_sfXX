@@ -6,5 +6,4 @@ app_name = "fly"
 urlpatterns = [
     path("", views.index, name="index"),
     path("<int:pk>/", views.prod_detail, name="prod_detail"),
-
 ]
