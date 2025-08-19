@@ -44,6 +44,8 @@ class ProdDeleteView(DeleteView):
 
 
 
+
+
     #app_name/<model_name>_<action>
     #fly/product_list.html
 

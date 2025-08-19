@@ -65,3 +65,5 @@ class Product(models.Model):
         return "/static/images/default-product.png"
 
 
+
+
