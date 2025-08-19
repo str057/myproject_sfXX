@@ -14,4 +14,4 @@ urlpatterns = [
 
 
 
-#skypro 19.08
+#skypro 19.08.2025
