@@ -12,4 +12,6 @@ urlpatterns = [
     path('product/<int:pk>/delete/', ProdDeleteView.as_view(), name='product_delete'),
 ]
 
+
+
 #skypro 19.08
