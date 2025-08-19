@@ -57,12 +57,15 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "scree_ru",
         "USER": "postgres",
         "PASSWORD": "8993106",
-        "HOST": "127.0.0.1",
+        "HOST": "localhost",
         "PORT": "5432",
+        "OPTIONS": {
+            "client_encoding": "UTF8",  # Явно указываем кодировку
+        },
     }
 }
 
@@ -97,7 +100,7 @@ STATIC_ROOT = os.path.join(
     BASE_DIR, "static"
 )  # Для сбора статики командой `collectstatic`
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),  # Дополнительные папки со статикой
+    os.path.join(BASE_DIR, "fly/static")
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

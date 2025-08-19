@@ -43,6 +43,14 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
 
+    views_counter = models.PositiveIntegerField(
+        verbose_name="Счетчик просмотров",
+        help_text="Укажите количество просмотров",
+        default=0
+    )
+
+
+
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
@@ -54,4 +62,6 @@ class Product(models.Model):
     def get_image_url(self):
         if self.image:
             return self.image.url
-        return "/static/images/default-product.png"  # Заглушка
+        return "/static/images/default-product.png"
+
+
